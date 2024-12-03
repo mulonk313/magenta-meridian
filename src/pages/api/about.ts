@@ -1,6 +1,6 @@
 export async function GET() {
   const data = {
-    description: "This is a brief description about me."
+    description: "My name is Karounis Ioannis and i have bachelor degree in the department of Informatics and Computer Engineering."
   };
 
   return new Response(JSON.stringify(data), {

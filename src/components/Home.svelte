@@ -37,10 +37,10 @@
 
 <main>
   <!-- 1st Section -->
-  <section class="text-center py-16 bg-gray-100">
-    <h1 class="text-4xl font-bold">Καλώς ήρθατε στο Portfolio μου</h1>
+  <div class="text-center py-16 bg-gray-100 mb-12">
+    <h1 class="text-4xl font-bold">Welcome to my portfolio</h1>
     <p class="mt-4 text-lg">
-      Ανακαλύψτε τα projects και την επαγγελματική μου διαδρομή.
+      Discover who i am, what i have done and some of my projects.
     </p>
     <button
       on:click={scrollToSection}
@@ -48,29 +48,29 @@
     >
       Δείτε Περισσότερα
     </button>
-  </section>
+  </div>
 
-  <!-- 2nd Section (fetched info) -->
-  <section id="info">
-    <h2>Λίγα λόγια για εμένα</h2>
+  <!-- 2nd Section -->
+  <div id="info" class="text-center mb-12">
+    <h2 class="text-3xl font-bold">Λίγα λόγια για εμένα</h2>
     {#if info}
       <p>{info.description}</p>
     {:else}
       <p>Loading...</p>
     {/if}
-  </section>
+  </div>
 
   <!-- 3rd Section (projects list) -->
-  <section>
+  <div class="mb-12">
     <h2>My Projects</h2>
     <div class="grid grid-cols-2 gap-4">
       <div class="bg-gray-200 p-4">Project 1</div>
       <div class="bg-gray-200 p-4">Project 2</div>
     </div>
-  </section>
+  </div>
 
   <!-- 4th Section (contact form) -->
-  <section>
+  <div class="mb-12">
     <h2>Contact Me</h2>
     <form class="flex flex-col gap-4">
       <input type="text" placeholder="Όνομα" class="border p-2" />
@@ -78,5 +78,5 @@
       <textarea placeholder="Μήνυμα" class="border p-2"></textarea>
       <button class="bg-blue-500 text-white p-2">Αποστολή</button>
     </form>
-  </section>
+  </div>
 </main>
