@@ -18,8 +18,8 @@ export default {
       },
       animation: {
         shrink: 'shrink 0.5s ease-in-out forwards',
-        slideInLeft: 'slideInLeft 0.5s ease-out',
-        slideInRight: 'slideInRight 0.5s ease-out',
+        slideInLeft: 'slideInLeft 0.8s ease-out',
+        slideInRight: 'slideInRight 0.8s ease-out',
       },
     },
   },

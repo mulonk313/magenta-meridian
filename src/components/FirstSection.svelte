@@ -11,8 +11,8 @@
     isVisible = false;
   }
 
-  function scrollToSection() {
-    const section = document.getElementById("info");
+  function scrollToSection({ info }) {
+    const section = document.getElementById(info);
     if (section) {
       section.scrollIntoView({
         behavior: "smooth",
