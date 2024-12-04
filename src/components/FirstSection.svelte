@@ -27,7 +27,7 @@
 <section class="text-center py-16 bg-gray-100 mb-12">
   <div>
     <h1
-      class="container mx-auto text-4xl font-bold relative"
+      class="sm:container sm:mx-auto text-4xl font-bold relative mb-8"
       use:inview
       on:inview_enter={handleEnter}
       on:inview_leave={handleLeave}
@@ -40,7 +40,7 @@
       />
     </h1>
     <p class="mt-4 text-lg">
-      Discover who i am, what i have done and some of my projects.
+      Discover who i am, my knowledge on programming and some of my projects.
     </p>
     <button
       on:click={scrollToSection}

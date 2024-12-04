@@ -7,7 +7,7 @@
 </script>
 
 <header class="bg-gray-800 text-white p-4">
-  <nav class="flex justify-between container mx-auto">
+  <nav class="flex sm:justify-between sm:container sm:mx-auto">
     <ul class="flex space-x-4">
       <li><a href="/" class="hover:underline">Home</a></li>
       <li><a href="/about" class="hover:underline">About</a></li>

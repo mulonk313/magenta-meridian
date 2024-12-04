@@ -1,5 +1,8 @@
 <script lang="ts">
   import { inview } from "svelte-inview";
+  let image1 = "src/assets/image1.webp";
+  let image2 = "src/assets/image2.webp";
+  let image3 = "src/assets/image3.webp";
 
   let isVisible = false;
 
@@ -38,7 +41,7 @@
   });
 </script>
 
-<section id="info" class="container mx-auto mb-12">
+<section id="info" class="sm:container sm:mx-auto mb-12">
   <div class="text-center mb-8">
     <h2
       class="text-3xl font-bold relative"
@@ -56,12 +59,33 @@
   </div>
   <div>
     {#if info}
-      <h5 class="text-1xl font-bold">About me</h5>
-      <p class="mb-8">{info.description}</p>
-      <h5 class="text-1xl font-bold">About my future</h5>
-      <p class="mb-8">{info.future}</p>
-      <h5 class="text-1xl font-bold">About my interview</h5>
-      <p class="mb-8">{info.interviewContent}</p>
+      <div class="grid grid-cols-2 gap-4">
+        <div>
+          <h5 class="text-1xl font-bold">About me</h5>
+          <p class="mb-8">{info.description}</p>
+        </div>
+        <div>
+          <img src={image1} alt="People" loading="lazy" />
+        </div>
+      </div>
+      <div class="grid grid-cols-2 gap-4">
+        <div>
+          <img src={image2} alt="Building" loading="lazy" />
+        </div>
+        <div>
+          <h5 class="text-1xl font-bold">About my future</h5>
+          <p class="mb-8">{info.future}</p>
+        </div>
+      </div>
+      <div class="grid grid-cols-2 gap-4">
+        <div>
+          <h5 class="text-1xl font-bold">About my interview</h5>
+          <p class="mb-8">{info.interviewContent}</p>
+        </div>
+        <div>
+          <img src={image3} alt="Offer" loading="lazy" />
+        </div>
+      </div>
     {:else}
       <p>Loading...</p>
     {/if}

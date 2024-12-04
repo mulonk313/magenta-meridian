@@ -12,8 +12,8 @@
   }
 </script>
 
-<section class="mb-12 bg-gray-100">
-  <div class="container mx-auto">
+<section class="mb-12 bg-gray-100 py-5">
+  <div class="sm:container sm:mx-auto">
     <h2
       class="text-3xl font-bold text-center relative mb-10"
       use:inview

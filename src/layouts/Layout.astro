@@ -1,15 +1,35 @@
 ---
 import "../styles/global.css";
+import Header from "../components/Header.svelte";
+import Footer from "../components/Footer.svelte";
 ---
 
 <!doctype html>
-<html lang="en" class="scroll-smooth">
+<html lang="en" class="h-full">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>My Portfolio</title>
+
+    <meta
+      name="description"
+      content="Explore my portfolio to see my projects, skills, and experience. Learn more about me."
+    />
+    <meta
+      name="keywords"
+      content="portfolio, web development, projects, skills"
+    />
+    <meta property="og:title" content="My Portfolio" />
+    <meta
+      property="og:description"
+      content="Explore my portfolio to see my projects, skills, and experience."
+    />
+    <meta property="og:image" content="/path-to-image.jpg" />
+    <meta property="og:url" content="https://www.yoursite.com" />
   </head>
-  <body class="font-sans">
+  <body class="font-sans m-0 min-h-full">
+    <Header />
     <slot />
+    <Footer />
   </body>
 </html>

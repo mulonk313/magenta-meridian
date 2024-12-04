@@ -12,7 +12,7 @@
   }
 </script>
 
-<section class="container mx-auto mt-12 mb-12">
+<section class="sm:container sm:mx-auto relative h-auto mt-12">
   <div>
     <h2
       class="text-center text-3xl font-bold mb-10 relative"
@@ -27,11 +27,35 @@
         style="width: 100%;"
       />
     </h2>
-    <form class="flex flex-col gap-4">
-      <input type="text" placeholder="Name" class="border p-2" />
-      <input type="email" placeholder="Email" class="border p-2" />
-      <textarea placeholder="Message" class="border p-2"></textarea>
-      <button class="bg-blue-500 text-white p-2">Sumbit</button>
+    <form
+      class="flex flex-col gap-4 w-full sm:w-8/12 lg:w-6/12 mx-auto bg-slate-100 px-6 py-8 border border-slate-300 rounded-lg shadow-lg"
+    >
+      <label for="name" class="sr-only">Name</label>
+      <input
+        id="name"
+        type="text"
+        placeholder="Name"
+        class="border rounded-lg p-3"
+      />
+      <label for="email" class="sr-only">Email</label>
+      <input
+        id="email"
+        type="email"
+        placeholder="Email"
+        class="border rounded-lg p-3"
+      />
+      <label for="message" class="sr-only">Message</label>
+      <textarea
+        id="message"
+        placeholder="Message"
+        class="border rounded-lg p-3"
+        rows="5"
+      ></textarea>
+      <button
+        class="bg-blue-500 text-white font-medium p-3 rounded-lg hover:bg-blue-600 transition-all w-full sm:w-auto mx-auto"
+      >
+        Submit
+      </button>
     </form>
   </div>
 </section>
