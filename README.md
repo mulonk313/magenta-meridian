@@ -15,11 +15,11 @@
 
 1. Κλωνοποιήστε το repository:
    ```bash
-   git clone https://github.com/username/repository-name.git
+   git clone https://github.com/mulonk313/magenta-meridian.git
    ```
 2. Εγκαταστήστε τις εξαρτήσεις:
    ```bash
-   cd repository-name
+   cd magenta-meridian
    npm install
    ```
 
