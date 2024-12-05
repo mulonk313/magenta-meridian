@@ -1,5 +1,6 @@
 <script>
   import { inview } from "svelte-inview";
+  import { language } from "../stores/languageStore";
 
   let isVisible = false;
 
@@ -20,7 +21,7 @@
       on:inview_enter={handleEnter}
       on:inview_leave={handleLeave}
     >
-      Contact Me
+      {$language === "EN" ? "Contact Me" : "Επικοινωνήστε μαζί μου"}
       <hr
         class="absolute left-1/2 transform -translate-x-1/2 mt-2 border-t-2 border-blue-500 transition-all"
         class:animate-shrink={isVisible}
@@ -30,31 +31,37 @@
     <form
       class="flex flex-col gap-4 max-w-lg mx-auto bg-slate-100 px-6 py-8 border border-slate-300 rounded-lg shadow-lg"
     >
-      <label for="name" class="sr-only">Name</label>
+      <label for="name" class="sr-only"
+        >{$language === "EN" ? "Name" : "Όνομα"}</label
+      >
       <input
         id="name"
         type="text"
-        placeholder="Name"
+        placeholder={$language === "EN" ? "Name" : "Όνομα"}
         class="border rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
       />
-      <label for="email" class="sr-only">Email</label>
+      <label for="email" class="sr-only"
+        >{$language === "EN" ? "Email" : "Ηλεκτρονικό ταχυδρομείο"}</label
+      >
       <input
         id="email"
         type="email"
-        placeholder="Email"
+        placeholder={$language === "EN" ? "Email" : "Ηλεκτρονικό ταχυδρομείο"}
         class="border rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
       />
-      <label for="message" class="sr-only">Message</label>
+      <label for="message" class="sr-only"
+        >{$language === "EN" ? "Message" : "Μήνυμα"}</label
+      >
       <textarea
         id="message"
-        placeholder="Message"
+        placeholder={$language === "EN" ? "Message" : "Μήνυμα"}
         class="border rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
         rows="5"
       ></textarea>
       <button
         class="bg-blue-500 text-white font-medium py-3 px-6 rounded-lg hover:bg-blue-600 transition-all w-full sm:w-auto mx-auto focus:outline-none focus:ring-2 focus:ring-blue-500"
       >
-        Submit
+        {$language === "EN" ? "Submit" : "Υποβολή"}
       </button>
     </form>
   </div>

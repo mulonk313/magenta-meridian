@@ -5,7 +5,7 @@ import Footer from "../components/Footer.svelte";
 ---
 
 <!doctype html>
-<html lang="en" class="h-full scroll-smooth">
+<html lang="en" class="h-full scroll-smooth m-0 p-0">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -27,8 +27,8 @@ import Footer from "../components/Footer.svelte";
     <meta property="og:image" content="/path-to-image.jpg" />
     <meta property="og:url" content="https://www.yoursite.com" />
   </head>
-  <body class="font-sans m-0 min-h-full">
-    <Header />
+  <body class="font-sans m-0 min-h-full overflow-auto">
+    <Header client:load />
     <slot />
     <Footer />
   </body>

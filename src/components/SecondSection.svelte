@@ -1,14 +1,15 @@
 <script lang="ts">
   import { inview } from "svelte-inview";
   import { onMount } from "svelte";
+  import { language } from "../stores/languageStore";
 
+  let info: AboutInfo | null = null;
   let images = [
     "src/assets/image1.webp",
     "src/assets/image2.webp",
     "src/assets/image3.webp",
   ];
 
-  // Visibility tracking
   let isVisible: Record<string, boolean> = {
     intro: false,
     section1: false,
@@ -28,33 +29,34 @@
     interviewContent: string;
   }
 
-  let info: AboutInfo | null = null;
+  let currentLanguage: string;
 
-  onMount(async () => {
-    try {
-      const response = await fetch("/api/about");
+  $: currentLanguage = $language;
 
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-
-      const data: AboutInfo = await response.json();
-
-      info = data;
-    } catch (error) {
-      console.error("Failed to fetch data:", error);
+  async function fetchData() {
+    const res = await fetch(
+      `http://localhost:4321/api/about?lang=${currentLanguage}`
+    );
+    if (res.ok) {
+      info = await res.json();
     }
+  }
+
+  onMount(() => {
+    fetchData();
   });
+
+  $: currentLanguage, fetchData();
 </script>
 
-<section id="info" class="sm:container sm:p-6 sm:mx-auto mb-12">
+<section id="info" class="sm:container p-6 sm:mx-auto mb-12">
   <div class="text-center mb-8">
     <h2
       class="text-3xl font-bold relative"
       use:inview
       on:inview_enter={() => handleEnter("intro")}
     >
-      Introduction
+      {$language === "EN" ? "Introduction" : "Παρουσίαση"}
       <hr
         class="absolute left-1/2 transform -translate-x-1/2 mt-2 border-t-2 border-blue-500 transition-all"
         class:animate-shrink={isVisible.intro}
@@ -77,10 +79,16 @@
             >
               <h5 class="text-1xl font-bold">
                 {index === 1
-                  ? "About me"
+                  ? currentLanguage === "EN"
+                    ? "About me"
+                    : "Σχετικά με εμένα"
                   : index === 2
-                    ? "About my future"
-                    : "About my interview"}
+                    ? currentLanguage === "EN"
+                      ? "About my future"
+                      : "Σχετικά με το μέλλον μου"
+                    : currentLanguage === "EN"
+                      ? "About my interview"
+                      : "Σχετικά με τη συνέντευξή μου"}
               </h5>
               <p class="mb-8">
                 {index === 1
@@ -94,6 +102,7 @@
               <img
                 src={images[index - 1]}
                 alt={`Section ${index}`}
+                class="w-full h-auto object-cover"
                 loading="lazy"
               />
             </div>
@@ -102,6 +111,7 @@
               <img
                 src={images[index - 1]}
                 alt={`Section ${index}`}
+                class="w-full h-auto object-cover"
                 loading="lazy"
               />
             </div>
@@ -111,10 +121,16 @@
             >
               <h5 class="text-1xl font-bold">
                 {index === 1
-                  ? "About me"
+                  ? currentLanguage === "EN"
+                    ? "About me"
+                    : "Σχετικά με εμένα"
                   : index === 2
-                    ? "About my future"
-                    : "About my interview"}
+                    ? currentLanguage === "EN"
+                      ? "About my future"
+                      : "Σχετικά με το μέλλον μου"
+                    : currentLanguage === "EN"
+                      ? "About my interview"
+                      : "Σχετικά με τη συνέντευξή μου"}
               </h5>
               <p class="mb-8">
                 {index === 1
@@ -128,7 +144,7 @@
         </div>
       {/each}
     {:else}
-      <p>Loading...</p>
+      <p>{currentLanguage === "EN" ? "Loading..." : "Φόρτωση..."}</p>
     {/if}
   </div>
 </section>
