@@ -6,7 +6,7 @@
 
   import image1 from "../assets/image1.webp";
   import image2 from "../assets/image2.webp";
-  import image3 from "../assets/image3.webp";
+  import image3 from "../assets/image3.jpg";
 
   let info: AboutInfo | null = null;
   let images = [image1, image2, image3];
