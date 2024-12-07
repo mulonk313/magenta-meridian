@@ -207,7 +207,7 @@
   </div>
   <div
     id="vok"
-    class={`mt-60 grid sm:grid-cols-2 gap-6 transition-all duration-700 delay-350 ease-in-out transform ${
+    class={`mt-60 grid grid-cols-2 gap-6 transition-all duration-700 delay-350 ease-in-out transform ${
       isVisible2
         ? "ms-0 text-justify"
         : "ms-[475px] max-[1024px]:ms-[0px] text-center"
