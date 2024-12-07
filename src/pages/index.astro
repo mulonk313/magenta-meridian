@@ -1,8 +1,64 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import Home from "../components/Home.svelte";
+import ContactForm from "../components/ContactForm.svelte";
+import Language from "../components/Language.svelte";
+import Hr from "../components/Hr.svelte";
+import ScrollButton from "../components/ScrollButton.svelte";
+import Introduction from "../components/Introduction.svelte";
+import ThirdSection from "../components/ThirdSection.svelte";
 ---
 
 <Layout>
-  <Home client:load />
+  <main>
+    <section class="text-center py-16 bg-gray-100 mb-12 mt-12">
+      <div>
+        <Hr
+          eng="Welcome to my portfolio"
+          gre="Καλωσήρθατε στο πορτφόλιό μου"
+          className="text-4xl font-bold relative mb-8"
+          client:idle
+        />
+        <p class="mt-4 text-lg">
+          <Language
+            en="Discover who i am, my knowledge on programming and some of my projects."
+            gr="Ανακαλύψτε ποιος είμαι, τις γνώσεις μου στον προγραμματισμό και μερικά από τα έργα μου."
+            client:idle
+          />
+        </p>
+        <ScrollButton ClassN="info" client:visible />
+      </div>
+    </section>
+    <section id="info" class="sm:container p-6 sm:mx-auto mb-12">
+      <div class="text-center mb-12">
+        <Hr
+          eng="Introduction"
+          gre="Παρουσίαση"
+          sectionName="intro"
+          className="text-3xl font-bold relative"
+          client:load
+        />
+      </div>
+      <Introduction client:load />
+    </section>
+    <section class="mb-12 bg-gray-100 p-6">
+      <div class="text-center mb-[100px]">
+        <Hr
+          eng="My Projects"
+          gre="Τα έργα μου"
+          className="text-3xl font-bold relative"
+          client:idle
+        />
+      </div>
+      <ThirdSection client:idle />
+    </section>
+    <section class="container mx-auto mt-12 px-4">
+      <Hr
+        eng="Contact Me"
+        gre="Επικοινωνήστε μαζί σου"
+        className="text-center text-3xl font-bold mb-10 relative"
+        client:idle
+      />
+      <ContactForm client:idle />
+    </section>
+  </main>
 </Layout>

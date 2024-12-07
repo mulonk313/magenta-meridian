@@ -1,25 +1,33 @@
 <script>
-  import { inview } from "svelte-inview";
   import Carousel from "svelte-carousel";
   import { language } from "../stores/languageStore";
   import { onMount } from "svelte";
+  import proj1 from "../assets/proj1.png";
+  import proj2 from "/src/assets/proj2.png";
+  import proj3 from "/src/assets/proj3.png";
+  import Language from "./Language.svelte";
 
   let currentLanguage = "EN";
   let carousel;
   let currentIndex = 1;
+  let isVisible1 = false;
+  let isVisible2 = false;
+  let isVisible3 = false;
+
+  function toggleVisibilityProj1() {
+    isVisible1 = !isVisible1;
+  }
+
+  function toggleVisibilityProj2() {
+    isVisible2 = !isVisible2;
+  }
+
+  function toggleVisibilityProj3() {
+    isVisible3 = !isVisible3;
+  }
 
   function handlePageChange(event) {
     currentIndex = event.detail;
-  }
-
-  let isVisible = false;
-
-  function handleEnter() {
-    isVisible = true;
-  }
-
-  function handleLeave() {
-    isVisible = false;
   }
 
   onMount(() => {
@@ -31,244 +39,344 @@
   });
 </script>
 
-<section class="mb-12 bg-gray-100 p-6">
-  <div class="sm:container sm:mx-auto max-w-4xl mx-auto px-4 mb-52">
-    <h2
-      class="text-3xl font-bold text-center relative mb-10"
-      use:inview
-      on:inview_enter={handleEnter}
-      on:inview_leave={handleLeave}
-    >
-      {currentLanguage === "EN" ? "My Projects" : "Τα έργα μου"}
-
-      <hr
-        class="absolute left-1/2 transform -translate-x-1/2 mt-2 border-t-2 border-blue-500 transition-all"
-        class:animate-shrink={isVisible}
-        style="width: 100%;"
-      />
-    </h2>
-    <Carousel
-      bind:this={carousel}
-      bind:startIndex={currentIndex}
-      class="max-w-sm sm:max-w-md md:max-w-lg mx-auto p-auto "
-      autoplay="true"
-      pauseOnFocus="true"
-      particlesToShow="1"
-      duration="800"
-      on:pageChange={handlePageChange}
-    >
-      <a href="#react" class={currentIndex === 0 ? "z-50" : "z-0"}>
-        <div class="relative group">
-          <img
-            class="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-xl shadow-lg carousel-item group-hover:opacity-80 cursor-pointer"
-            class:centered={currentIndex === 0}
-            class:blurred={currentIndex !== 0}
-            alt="I1"
-            src="src/assets/proj1.png"
-          />
-          <p
-            class="absolute bottom-64 w-full text-center opacity-0 group-hover:opacity-100 bg-black bg-opacity-50 text-white p-2 transition-opacity duration-300"
-          >
-            {currentLanguage === "EN"
-              ? "A React personal project to exercise my skills."
-              : "Ένα προσωπικό έργο με React για εξάσκηση των δεξιοτήτων μου."}
-          </p>
-        </div>
-      </a>
-      <a href="#vok" class={currentIndex === 1 ? "z-50" : "z-0"}>
-        <div class="relative group">
-          <img
-            class="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-xl shadow-lg carousel-item group-hover:opacity-80 cursor-pointer"
-            class:centered={currentIndex === 1}
-            class:blurred={currentIndex !== 1}
-            alt="I2"
-            src="src/assets/proj2.png"
-          />
-          <p
-            class="absolute bottom-64 w-full text-center opacity-0 group-hover:opacity-100 bg-black bg-opacity-50 text-white p-2 transition-opacity duration-300"
-          >
-            {currentLanguage === "EN"
-              ? "Full stack developing of the booking system for a website."
-              : "Πλήρης ανάπτυξη του συστήματος κρατήσεων για έναν ιστότοπο."}
-          </p>
-        </div>
-      </a>
-      <a href="#amazon" class={currentIndex === 2 ? "z-50" : "z-0"}>
-        <div class="relative group">
-          <img
-            class="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-xl shadow-lg carousel-item group-hover:opacity-80 cursor-pointer"
-            class:centered={currentIndex === 2}
-            class:blurred={currentIndex !== 2}
-            alt="I3"
-            src="src/assets/proj3.png"
-          />
-          <p
-            class="absolute bottom-64 w-full text-center opacity-0 group-hover:opacity-100 bg-black bg-opacity-50 text-white p-2 transition-opacity duration-300"
-          >
-            {currentLanguage === "EN"
-              ? "A Personal JavaScript Project, clone to Amazon."
-              : "Ένα προσωπικό έργο JavaScript, κλώνος του Amazon."}
-          </p>
-        </div>
-      </a>
-    </Carousel>
-  </div>
-  <div class="sm:p-6 sm:container sm:mx-auto mt-12">
-    <div id="react" class="grid sm:grid-cols-2 gap-4 mb-12">
-      <!-- svelte-ignore a11y_no_noninteractive_tabindex -->
-      <img
-        class="h-5/6 justify-center mt-12 transition-transform duration-300 ease-in-out focus:scale-150 hover:scale-150"
-        src="src/assets/proj1-sec.png"
-        alt="Building"
-        loading="lazy"
-        tabindex="0"
-      />
-      <div>
-        <h2 class="text-3xl font-bold mb-6 mt-10">React Project</h2>
-        <hr class="mt-2 border-t-2 border-blue-500" style="width: 15%;" />
-        <p class="mt-12 leading-8">
-          This is a personal React component project. I programm it entiry with
-          React and React Bootstrap. I use node.js for the server and mySQL for
-          databases.
-        </p>
-        <p class="mt-12 leading-8">
-          I have a login, a signUp and a search. Main theme of this project is
-          people find what job they like and apply to the company.
-        </p>
-        <p class="mt-12 leading-8">
-          All of job applications and the job list rendering with APIs.
-        </p>
-        <!-- svelte-ignore a11y_no_noninteractive_tabindex -->
+<div class="carousel-wrapper m-auto h-auto w-auto lg:h-[1100px] lg:w-[1100px]">
+  <Carousel
+    bind:this={carousel}
+    bind:startIndex={currentIndex}
+    class="h-full w-full"
+    particlesToShow="1"
+    autoplay="true"
+    duration="1000"
+    pauseOnFocus="false"
+    on:pageChange={handlePageChange}
+  >
+    <a href="#react" class={currentIndex === 0 ? "z-50" : "z-0"}>
+      <div class="relative group">
         <img
-          class="h-6/8 justify-center mt-4 transition-transform duration-300 ease-in-out focus:scale-150 hover:scale-150"
-          src="src/assets/proj1-sec2.png"
-          alt="Building"
-          loading="lazy"
-          tabindex="0"
+          src={proj1.src}
+          alt={proj1}
+          class="w-full h-auto max-w-[80%] min-[425px]:max-w-[100%]
+    rounded-xl shadow-lg cursor-pointer
+    transition-transform duration-300 ease-in-out
+    object-contain
+    mx-auto md:mx-0"
+          class:centered={currentIndex === 1}
+          class:blurred={currentIndex !== 1}
+          loading="eager"
         />
-      </div>
-    </div>
-    <div id="vok" class="grid grid-cols-2 gap-6 mt-60">
-      <div>
-        <h2 class="text-3xl font-bold mb-6 mt-10">Booking System</h2>
-        <hr class="mt-2 border-t-2 border-blue-500" style="width: 15%;" />
-        <p class="mt-12 -pl-12 leading-8">
-          This project was a self-employend job about a website for hot baths in
-          Iceland.
-        </p>
-        <p class="mt-12 leading-8">
-          I worked on booking system and how a user can take a ticket and some
-          extra personal things with ease. The system, first was about to select
-          how many people will attend the baths, which day and what hour. After
-          you could procceed for payment.
-        </p>
-        <div
-          class="flex flex-row gap-6 justify-normal md:justify-center h-screen mt-[105px] sm:mt-0"
+        <span
+          class="absolute bottom-0 w-full h-1/2 text-center p-2 lg:p-[65px] opacity-0 group-hover:opacity-100 bg-black bg-opacity-70 text-white transition-opacity duration-300"
         >
-          <!-- svelte-ignore a11y_no_noninteractive_tabindex -->
-          <img
-            class="h-44 md:h-60 md:w-1/2 w-72 transition-transform duration-300 ease-in-out md:translate-x-0 focus:translate-x-0 hover:translate-x-0 md:hover:translate-x-3/4 md:focus:translate-x-3/4 md:focus:scale-[2] focus:scale-[2.5] hover:scale-[2.5]"
-            src="src/assets/proj2-sec2.png"
-            alt="Building"
-            loading="lazy"
-            tabindex="0"
+          <Language
+            en="A React personal project to exercise my skills."
+            gr="Ένα προσωπικό έργο με React για εξάσκηση των δεξιοτήτων μου."
           />
-          <!-- svelte-ignore a11y_no_noninteractive_tabindex -->
-          <img
-            class="h-44 md:h-60 md:w-1/2 w-72 transition-transform duration-300 ease-in-out md:translate-x-0 focus:-translate-x-0 md:focus:-translate-x-3/4 md:focus:scale-[2] focus:scale-[2.5] hover:scale-[2.5]"
-            src="src/assets/proj2-sec3.png"
-            alt="Building"
-            loading="lazy"
-            tabindex="0"
-          />
-        </div>
+        </span>
       </div>
-      <!-- svelte-ignore a11y_no_noninteractive_tabindex -->
-      <div>
+    </a>
+    <a href="#vok" class={currentIndex === 1 ? "z-50" : "z-0"}>
+      <div class="relative group">
         <img
-          class="h-72 w-92 scale-x-75 lg:scale-x-150 -translate-x-8 sm:-translate-x-0 sm:h-80 md:w-80 justify-center mt-12 ms-10 lg:ms-[150px] transition-transform duration-300 ease-in-out focus:-translate-x-3/4 sm:focus:-translate-x-0 lg:focus:scale-[2] lg:hover:scale-[2] focus:scale-[2] hover:scale-[2] sm:focus:scale-150 sm:hover:scale-150"
-          src="src/assets/proj2-sec.png"
-          alt="Building"
+          class="w-full h-auto max-w-[80%] min-[425px]:max-w-none
+    rounded-xl shadow-lg cursor-pointer
+    transition-transform duration-300 ease-in-out
+    object-contain
+    mx-auto md:mx-0"
+          class:centered={currentIndex === 1}
+          class:blurred={currentIndex !== 1}
+          src={proj2.src}
+          alt={proj2}
           loading="lazy"
-          tabindex="0"
         />
-        <p class="mt-12 leading-8">
-          There we have a popup box with some extra items which someone could
-          select for his baths.
-        </p>
-        <p class="mt-12 leading-8">
-          Finally, we have the page where the user will enter his personal info,
-          his credit card info and after he can pay the ammount and recieve the
-          ticket.
+        <p
+          class="absolute bottom-0 w-full h-1/2 text-center p-[65px] opacity-0 group-hover:opacity-100 bg-black bg-opacity-70 text-white transition-opacity duration-300"
+        >
+          <Language
+            en="Full stack developing of the booking system for a website."
+            gr="Πλήρης ανάπτυξη του συστήματος κρατήσεων για έναν ιστότοπο."
+          />
         </p>
       </div>
-    </div>
-    <div id="amazon" class="grid grid-cols-2 gap-4 -mt-96">
+    </a>
+    <a href="#amazon" class={currentIndex === 2 ? "z-50" : "z-0"}>
+      <div class="relative group">
+        <img
+          class="w-full h-auto max-w-[80%] min-[425px]:max-w-none
+    rounded-xl shadow-lg cursor-pointer
+    transition-transform duration-300 ease-in-out
+    object-contain
+    mx-auto md:mx-0"
+          class:centered={currentIndex === 2}
+          class:blurred={currentIndex !== 2}
+          src={proj3.src}
+          alt={proj3}
+          loading="lazy"
+        />
+        <p
+          class="absolute bottom-0 w-full h-1/2 text-center p-[65px] opacity-0 group-hover:opacity-100 bg-black bg-opacity-70 text-white transition-opacity duration-300"
+        >
+          <Language
+            en="A Personal JavaScript Project, clone to Amazon."
+            gr="Ένα προσωπικό έργο JavaScript, κλώνος του Amazon."
+          />
+        </p>
+      </div>
+    </a>
+  </Carousel>
+</div>
+<div
+  class="container -mt-[200px] max-[1024px]:mt-[100px] relative overflow-hidden mx-auto px-4"
+>
+  <div
+    id="react"
+    class={`grid md:grid-cols-2 gap-4 mb-12 transition-all duration-700 delay-350 ease-in-out transform ${
+      isVisible1
+        ? "me-0 text-justify"
+        : "me-[475px] max-[1024px]:me-[0px] text-center"
+    }`}
+  >
+    <!-- svelte-ignore a11y_no_noninteractive_tabindex -->
+    <img
+      class={`h-5/6 justify-center mt-12 transition-all delay-200 duration-700 ease-in-out transform ${
+        isVisible1
+          ? "translate-x-0 opacity-100 scale-100"
+          : "-translate-x-full opacity-0 scale-95"
+      }`}
+      src="src/assets/proj1-sec.png"
+      alt="Building"
+      loading="lazy"
+      tabindex="0"
+    />
+    <div>
+      <h2 class="text-3xl font-bold mb-6 mt-10">
+        <Language en="React project" gr="Έργο React" />
+      </h2>
+      <button
+        class="p-[8px] w-[100px] rounded bg-blue-500 text-xs sm:text-sm text-white"
+        on:click={toggleVisibilityProj1}
+      >
+        Press Me
+      </button>
+      <hr
+        class="mt-2 border-t-2 border-blue-500"
+        style={`transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);  width: ${isVisible1 ? "15%" : "100%"};`}
+      />
+      <p class="mt-12 leading-8">
+        <Language
+          en="This is a personal React component project. I programed it entirely with React and React Bootstrap. I used node.js for the server and mySQL for databases."
+          gr="Αυτό είναι ένα προσωπικό έργο στοιχείου React. Το προγραμμάτισα εξ ολοκλήρου με τη React και τη React Bootstrap. Χρησιμοποίησα node.js για τον διακομιστή και mySQL για βάσεις δεδομένων."
+        />
+      </p>
+      <p
+        class={`mt-12 transition-all duration-700 ease-in-out delay-200 transform leading-8 ${
+          isVisible1
+            ? "-translate-x-0 opacity-100 scale-100"
+            : "translate-x-full opacity-0 scale-95"
+        }`}
+      >
+        <Language
+          en="The website consists of a login page, a signUp and a search bar. Main theme of this project is people find what job they like and to apply to the company."
+          gr="Ο ιστότοπος αποτελείται από μια σελίδα σύνδεσης, μια εγγραφή και μια γραμμή αναζήτησης. Κύριο θέμα αυτού του έργου είναι οι άνθρωποι να βρουν τη δουλειά που τους αρέσει και να κάνουν αίτηση στην εταιρεία."
+        />
+      </p>
+      <p
+        class={`mt-12 transition-all duration-700 ease-in-out delay-200 transform leading-8 ${
+          isVisible1
+            ? "-translate-x-0 opacity-100 scale-100"
+            : "translate-x-full opacity-0 scale-95"
+        }`}
+      >
+        <Language
+          en="All of job applications and the job list being rendered with APIs."
+          gr="Όλες οι αιτήσεις εργασίας και η λίστα εργασιών αποδίδονται με API."
+        />
+      </p>
       <!-- svelte-ignore a11y_no_noninteractive_tabindex -->
       <img
-        class="h-84 md:h-5/6 mt-[600px] md:mt-12 sm:mt-12 lg:mt-0 scale-y-[5] md:scale-y-[0.5] justify-center transition-transform duration-300 ease-in-out focus:translate-x-2/4 md:focus:scale-[1.2] focus:scale-[2.5] hover:scale-150"
-        src="src/assets/proj3-sec.png"
+        class={`h-6/8 justify-center mt-12 transition-all delay-200 duration-700 ease-in-out transform ${
+          isVisible1
+            ? "-translate-x-0 opacity-100 scale-100"
+            : "translate-x-full opacity-0 scale-95"
+        }`}
+        src="src/assets/proj1-sec2.png"
         alt="Building"
         loading="lazy"
         tabindex="0"
       />
-      <div>
-        <h2 class="text-3xl font-bold mb-6 mt-10">Amazon Project</h2>
-        <hr class="mt-2 border-t-2 border-blue-500" style="width: 15%;" />
-        <p class="mt-12 leading-8">
-          In this personal project i recreated the layout of Amazon's website.
-        </p>
-        <p class="mt-12 leading-8">
-          The main point was exersice my skills on javascript, i fetched the
-          items via localstorage, made a searchbar and add buttons. When someone
-          was selected the amount of items, he could proceed to the payment
-          page.
-        </p>
-        <p class="mt-12 leading-8">
-          In payment page, i created only the UI with card items for
-          shipment,amount and date. And there the user can see the way and
-          choose how can recieve the item which bought.
-        </p>
+    </div>
+  </div>
+  <div
+    id="vok"
+    class={`mt-60 grid sm:grid-cols-2 gap-6 transition-all duration-700 delay-350 ease-in-out transform ${
+      isVisible2
+        ? "ms-0 text-justify"
+        : "ms-[475px] max-[1024px]:ms-[0px] text-center"
+    }`}
+  >
+    <div>
+      <h2 class="text-3xl font-bold mb-6 mt-10">
+        <Language en="Booking System" gr="Σύστημα έκδοσης εισιτηρίων" />
+      </h2>
+      <button
+        class="p-[8px] w-[100px] rounded bg-blue-500 text-xs sm:text-sm text-white"
+        on:click={toggleVisibilityProj2}
+      >
+        Press Me
+      </button>
+      <hr
+        class="mt-2 border-t-2 border-blue-500"
+        style={`transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);  width: ${isVisible2 ? "15%" : "100%"};`}
+      />
+      <p class="mt-12 -pl-12 leading-8">
+        <Language
+          en="This project was a self-employed job for the creation of a booking system for a website about hot baths in Iceland."
+          gr="Αυτό το έργο ήταν μια αυτοαπασχολούμενη εργασία για τη δημιουργία ενός συστήματος κρατήσεων για έναν ιστότοπο για ζεστά μπάνια στην Ισλανδία."
+        />
+      </p>
+      <p
+        class={`mt-12 transition-all duration-700 ease-in-out delay-200 transform leading-8 ${
+          isVisible2
+            ? "translate-x-0 opacity-100 scale-100"
+            : "-translate-x-full opacity-0 scale-95"
+        }`}
+      >
+        <Language
+          en="I worked on booking system and how a user can take a ticket and some
+        extra personal things with ease. The user inside he system, can first was about to select
+        how many people will attend the baths, which day and what hour. After
+        he can procceed for payment."
+          gr="Εργάστηκα στο σύστημα κρατήσεων και στο πώς ένας χρήστης μπορεί να πάρει ένα εισιτήριο και μερικά
+        επιπλέον προσωπικά πράγματα με ευκολία. Ο χρήστης μέσα στο σύστημα, μπορεί πρώτα να επιλέξει
+        πόσα άτομα θα παρευρεθούν στα λουτρά, ποια μέρα και ποια ώρα. Μετά
+        μπορεί να προχωρήσει στην πληρωμή."
+        />
+      </p>
+      <div
+        class="flex flex-row gap-6 justify-normal md:justify-center h-screen mt-[105px] sm:mt-0"
+      >
         <!-- svelte-ignore a11y_no_noninteractive_tabindex -->
         <img
-          class="h-44 md:h-6/8 scale-[1.2] scale-x-[1.8] md:scale-x-[1.5] justify-center mt-4 transition-transform duration-300 ease-in-out -translate-x-2/4 lg:hover:scale-[2.5] sm:focus:-translate-x-2/4 focus:scale-150 hover:scale-150"
-          src="src/assets/proj3-sec2.png"
+          class={`h-44 md:h-60 md:w-1/2 w-72 justify-center mt-12 transition-all delay-200 duration-700 ease-in-out transform ${
+            isVisible2
+              ? "translate-x-0 opacity-100 scale-100"
+              : "-translate-x-full opacity-0 scale-95"
+          }`}
+          src="src/assets/proj2-sec2.png"
+          alt="Building"
+          loading="lazy"
+          tabindex="0"
+        />
+        <!-- svelte-ignore a11y_no_noninteractive_tabindex -->
+        <img
+          class={`h-44 md:h-60 md:w-1/2 w-72 justify-center mt-12 transition-all delay-200 duration-700 ease-in-out transform ${
+            isVisible2
+              ? "-translate-y-0 opacity-100 scale-100"
+              : "translate-y-20 opacity-0 scale-95"
+          }`}
+          src="src/assets/proj2-sec3.png"
           alt="Building"
           loading="lazy"
           tabindex="0"
         />
       </div>
     </div>
+    <!-- svelte-ignore a11y_no_noninteractive_tabindex -->
+    <div>
+      <img
+        class={`h-72 w-92 sm:h-80 md:w-80 scale-x-75 lg:scale-x-150 -translate-x-8 sm:-translate-x-0 justify-center mt-12 ms-10 lg:ms-[150px] transition-all delay-200 duration-700 ease-in-out transform ${
+          isVisible2
+            ? "translate-y-0 opacity-100 scale-100"
+            : "-translate-y-20 opacity-0 scale-95"
+        }`}
+        src="src/assets/proj2-sec.png"
+        alt="Building"
+        loading="lazy"
+        tabindex="0"
+      />
+      <p
+        class={`mt-12 transition-all duration-700 ease-in-out delay-200 transform leading-8 ${
+          isVisible2
+            ? "-translate-x-0 opacity-100 scale-100"
+            : "translate-x-full opacity-0 scale-95"
+        }`}
+      >
+        <Language
+          en="There we have a popup box with some extra items which someone could
+        to select those for his bath."
+          gr="Εκεί έχουμε ένα αναδυόμενο πλαίσιο με μερικά επιπλέον στοιχεία που θα μπορούσε κάποιος
+        να επιλέξει αυτά για το μπάνιο του."
+        />
+      </p>
+      <p
+        class={`mt-12 transition-all duration-700 ease-in-out delay-200 transform leading-8 ${
+          isVisible2
+            ? "-translate-x-0 opacity-100 scale-100"
+            : "translate-x-full opacity-0 scale-95"
+        }`}
+      >
+        <Language
+          en="
+Finally, we have the page where the user will enter his personal info, his credit card info and after he can pay the amount and received the ticket.
+"
+          gr="
+Τέλος, έχουμε τη σελίδα όπου ο χρήστης θα εισάγει τα προσωπικά του στοιχεία, τα στοιχεία της πιστωτικής του κάρτας και αφού μπορεί να πληρώσει το ποσό και να λάβει το εισιτήριο."
+        />
+      </p>
+    </div>
   </div>
-</section>
+  <div id="amazon" class="grid grid-cols-2 gap-4 -mt-96">
+    <!-- svelte-ignore a11y_no_noninteractive_tabindex -->
+    <img
+      class="h-84 md:h-5/6 mt-[600px] md:mt-12 sm:mt-12 lg:mt-0 scale-y-[5] sm:scale-y-[0.5] lg:scale-y-[0.5] justify-center transition-transform duration-300 ease-in-out focus:translate-x-2/4 md:focus:scale-[1] lg:focus:scale-0 focus:scale-[2.5] hover:scale-150 md:hover:scale-100"
+      src="src/assets/proj3-sec.png"
+      alt="Building"
+      loading="lazy"
+      tabindex="0"
+    />
+    <div>
+      <h2 class="text-3xl font-bold mb-6 mt-10">
+        <Language en="Amazon Project" gr="Έργο Amazon" />
+      </h2>
+      <hr
+        class="mt-2 border-t-2 border-blue-500"
+        style={`transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);  width: ${isVisible3 ? "15%" : "100%"};`}
+      />
+      <p class="mt-12 leading-8">
+        <Language
+          en="In this personal project i recreated the layout of Amazon's website."
+          gr="Σε αυτό το προσωπικό έργο αναδημιούργησα τη διάταξη του ιστότοπου της Amazon."
+        />
+      </p>
+      <p class="mt-12 leading-8">
+        <Language
+          en="The main point was exersice my skills on javascript, i fetched the items
+        via localstorage, i made a searchbar and add buttons for adding items. When someone
+        select the amount of items, he could proceed to the payment page."
+          gr="Το κύριο σημείο ήταν να ασκήσω τις δεξιότητές μου στη javascript, πήρα τα αντικείμενα
+        μέσω τοπικής αποθήκευσης, έφτιαξα μια γραμμή αναζήτησης και πρόσθεσα κουμπιά για την προσθήκη στοιχείων. Όταν κάποιος επιλέξει το ποσό των στοιχείων, θα μπορούσε να προχωρήσει στη σελίδα πληρωμής."
+        />
+      </p>
+      <p class="mt-12 leading-8">
+        <Language
+          en="In payment page, i created only the UI with card items for
+        shipment,amount and date. And there the user can see the way and choose
+        how can recieve the item which bought."
+          gr="Στη σελίδα πληρωμής, δημιούργησα μόνο τη διεπαφή χρήστη με στοιχεία κάρτας για
+        αποστολή, ποσό και ημερομηνία. Και εκεί ο χρήστης μπορεί να δει τον τρόπο και να επιλέξει
+        πώς μπορείτε να παραλάβετε το αντικείμενο που αγόρασε."
+        />
+      </p>
+      <!-- svelte-ignore a11y_no_noninteractive_tabindex -->
+      <img
+        class="h-44 md:h-6/8 scale-[1.2] scale-x-[1.8] md:scale-x-[1.5] justify-center mt-4 transition-transform duration-300 ease-in-out -translate-x-2/4 lg:translate-x-2/4 lg:hover:scale-[2.5] sm:focus:-translate-x-2/4 focus:scale-150 hover:scale-150 hover:-translate-y-2/4"
+        src="src/assets/proj3-sec2.png"
+        alt="Building"
+        loading="lazy"
+        tabindex="0"
+      />
+    </div>
+  </div>
+</div>
 
 <style>
-  .carousel-item {
-    transition:
-      transform 0.3s ease,
-      filter 0.3s ease;
-    object-fit: contain;
-    width: 100%;
-    height: auto;
-  }
-
-  .centered {
-    transform: scale(1.2);
-    z-index: 1;
-  }
-
-  .blurred {
-    filter: blur(3px);
-    opacity: 0.6;
-  }
-
-  @media (max-width: 425px) {
-    .carousel-item {
-      max-width: 80%;
-      margin: 0 auto;
-    }
-    .centered {
-      transform: scale(1.1);
-    }
-  }
 </style>
