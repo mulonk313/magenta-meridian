@@ -5,7 +5,7 @@
   let currentLanguage;
   let isMenuOpen = false;
 
-  language.subscribe((value) => {
+  $: language.subscribe((value) => {
     currentLanguage = value;
   });
 

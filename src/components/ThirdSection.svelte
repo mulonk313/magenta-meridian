@@ -2,7 +2,7 @@
   import Carousel from "svelte-carousel";
   import { language } from "../stores/languageStore";
   import { onMount } from "svelte";
-  import proj1 from "../assets/proj1.png";
+  import proj1 from "/src/assets/proj1.png";
   import proj2 from "/src/assets/proj2.png";
   import proj3 from "/src/assets/proj3.png";
   import Language from "./Language.svelte";
@@ -158,8 +158,9 @@
         Press Me
       </button>
       <hr
-        class="mt-2 border-t-2 border-blue-500"
-        style={`transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);  width: ${isVisible1 ? "15%" : "100%"};`}
+        class={`mt-2 border-t-2 border-blue-500 transition-all duration-300 ease-in-out ${
+          isVisible1 ? "w-[15%]" : "w-full"
+        }`}
       />
       <p class="mt-12 leading-8">
         <Language
@@ -224,8 +225,7 @@
         Press Me
       </button>
       <hr
-        class="mt-2 border-t-2 border-blue-500"
-        style={`transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);  width: ${isVisible2 ? "15%" : "100%"};`}
+        class={`mt-2 border-t-2 border-blue-500 transition-all duration-300 ease-in-out ${isVisible2 ? "w-[15%]" : "w-full"}`}
       />
       <p class="mt-12 -pl-12 leading-8">
         <Language
@@ -338,8 +338,7 @@ Finally, we have the page where the user will enter his personal info, his credi
         <Language en="Amazon Project" gr="Έργο Amazon" />
       </h2>
       <hr
-        class="mt-2 border-t-2 border-blue-500"
-        style={`transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);  width: ${isVisible3 ? "15%" : "100%"};`}
+        class={`mt-2 border-t-2 border-blue-500 transition-all duration-300 easy-in-out width: ${isVisible3 ? "w-[15%]" : "w-full"}`}
       />
       <p class="mt-12 leading-8">
         <Language
@@ -377,6 +376,3 @@ Finally, we have the page where the user will enter his personal info, his credi
     </div>
   </div>
 </div>
-
-<style>
-</style>

@@ -10,19 +10,12 @@
 
   let info: AboutInfo | null = null;
   let images = [image1, image2, image3];
-
   let isVisible: Record<string, boolean> = {
     intro: false,
     section1: false,
     section2: false,
     section3: false,
   };
-
-  function handleEnter(section: string) {
-    if (!isVisible[section]) {
-      isVisible[section] = true;
-    }
-  }
 
   interface AboutInfo {
     description: string;
@@ -31,7 +24,6 @@
   }
 
   let currentLanguage: string;
-
   $: currentLanguage = $language;
 
   async function fetchData() {
@@ -40,14 +32,19 @@
     );
     if (res.ok) {
       info = await res.json();
+    } else {
+      console.error("Failed to fetch data");
     }
   }
 
-  onMount(() => {
-    fetchData();
-  });
+  onMount(fetchData);
+  $: if (currentLanguage) fetchData();
 
-  $: currentLanguage, fetchData();
+  function handleEnter(section: string) {
+    if (!isVisible[section]) {
+      isVisible = { ...isVisible, [section]: true };
+    }
+  }
 </script>
 
 <div>
@@ -64,16 +61,18 @@
             class:animate-slideInLeft={isVisible[`section${index}`]}
           >
             <h5 class="text-1xl font-bold">
-              {#if index === 1}
-                <Language en="About me" gr="Σχετικά με εμένα" />
-              {:else if index === 2}
-                <Language en="About my future" gr="Σχετικά με το μέλλον μου" />
-              {:else}
-                <Language
-                  en="About my interview"
-                  gr="Σχετικά με τη συνέντευξή μου"
-                />
-              {/if}
+              <Language
+                en={index === 1
+                  ? "About me"
+                  : index === 2
+                    ? "About my future"
+                    : "About my interview"}
+                gr={index === 1
+                  ? "Σχετικά με εμένα"
+                  : index === 2
+                    ? "Σχετικά με το μέλλον μου"
+                    : "Σχετικά με τη συνέντευξή μου"}
+              />
             </h5>
             <p class="mb-8">
               {index === 1
@@ -86,19 +85,15 @@
           <div class:animate-slideInRight={isVisible[`section${index}`]}>
             <img
               src={images[index - 1].src}
-              width={images[index - 1].width}
-              height={images[index - 1].height}
               alt={`Section ${index}`}
               class="w-full h-auto object-cover rounded-md"
-              loading="eager"
+              loading={index === 1 ? "eager" : "lazy"}
             />
           </div>
         {:else}
           <div class:animate-slideInLeft={isVisible[`section${index}`]}>
             <img
               src={images[index - 1].src}
-              width={images[index - 1].width}
-              height={images[index - 1].height}
               alt={`Section ${index}`}
               class="w-full h-auto object-cover rounded-md"
               loading="lazy"
@@ -109,16 +104,18 @@
             class:animate-slideInRight={isVisible[`section${index}`]}
           >
             <h5 class="text-1xl font-bold">
-              {#if index === 1}
-                <Language en="About me" gr="Σχετικά με εμένα" />
-              {:else if index === 2}
-                <Language en="About my future" gr="Σχετικά με το μέλλον μου" />
-              {:else}
-                <Language
-                  en="About my interview"
-                  gr="Σχετικά με τη συνέντευξή μου"
-                />
-              {/if}
+              <Language
+                en={index === 1
+                  ? "About me"
+                  : index === 2
+                    ? "About my future"
+                    : "About my interview"}
+                gr={index === 1
+                  ? "Σχετικά με εμένα"
+                  : index === 2
+                    ? "Σχετικά με το μέλλον μου"
+                    : "Σχετικά με τη συνέντευξή μου"}
+              />
             </h5>
             <p class="mb-8">
               {index === 1
