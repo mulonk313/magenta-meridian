@@ -1,0 +1,44 @@
+---
+import { languages } from "../i18n/ui";
+import {
+  getLangFromUrl,
+  useTranslatedPath,
+  getRouteFromUrl,
+} from "../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const translatePath = useTranslatedPath(lang);
+const route = getRouteFromUrl(Astro.url);
+---
+
+<div class="flex space-x-2">
+  {
+    Object.entries(languages).map(([langCode, label]) => (
+      <a
+        href={translatePath(`/${route ? route : ""}`, langCode)}
+        class={`language-link px-3 py-1 rounded text-xs sm:text-sm ${
+          langCode === lang ? "bg-blue-500" : "bg-gray-500"
+        }`}
+        data-lang={langCode}
+      >
+        {label}
+      </a>
+    ))
+  }
+</div>
+
+<script>
+  const links = document.querySelectorAll(".language-link");
+
+  links.forEach((link) => {
+    link.addEventListener("click", () => {
+      links.forEach((link) => {
+        link.classList.remove("bg-blue-500");
+        link.classList.add("bg-gray-500");
+      });
+
+      link.classList.remove("bg-gray-500");
+      link.classList.add("bg-blue-500");
+    });
+  });
+</script>

@@ -1,13 +1,12 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import ContactForm from "../components/ContactForm.svelte";
-import Language from "../components/Language.svelte";
-import Hr from "../components/Hr.svelte";
-import ScrollButton from "../components/ScrollButton.svelte";
-import Introduction from "../components/Introduction.svelte";
-import ThirdSection from "../components/ThirdSection.svelte";
+import Layout from "../../layouts/Layout.astro";
+import ContactForm from "../../components/ContactForm.svelte";
+import Hr from "../../components/Hr.svelte";
+import ScrollButton from "../../components/ScrollButton.svelte";
+import Introduction from "../../components/Introduction.svelte";
+import ThirdSection from "../../components/ThirdSection.svelte";
 
-import { getLangFromUrl, useTranslations } from "../i18n/utils";
+import { getLangFromUrl, useTranslations } from "../../i18n/utils";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);

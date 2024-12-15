@@ -1,5 +1,10 @@
 {
   "extends": "astro/tsconfigs/strict",
-  "include": [".astro/types.d.ts", "**/*"],
-  "exclude": ["dist"]
+  "include": [".astro/types.d.ts", "**/*", "src/pages/api/index/.ts"],
+  "exclude": ["dist"],
+  "compilerOptions": {
+    "typeRoots": ["./src/types", "node_modules/@types"],
+    "jsx": "preserve",
+    "jsxImportSource": "solid-js"
+  }
 }

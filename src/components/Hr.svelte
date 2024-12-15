@@ -1,6 +1,5 @@
 <script lang="ts">
   import { inview } from "svelte-inview";
-  import Language from "./Language.svelte";
 
   let visibilityState: Record<string, boolean> = {};
 
@@ -9,8 +8,6 @@
   }
 
   export let Tag: string = "h1";
-  export let eng: string = "";
-  export let gre: string = "";
   export let sectionName: string = "";
   export let className: string = "";
   export let lang: string = "";
@@ -23,7 +20,6 @@
 >
   {#if Tag === "h1"}
     <h1 class={className}>
-      <!-- <Language en={eng} gr={gre} /> -->
       {lang}
     </h1>
   {:else if Tag === "h2"}
@@ -32,15 +28,15 @@
     </h2>
   {:else if Tag === "h3"}
     <h3 class={className}>
-      <Language en={eng} gr={gre} />
+      {lang}
     </h3>
   {:else if Tag === "p"}
     <p class={className}>
-      <Language en={eng} gr={gre} />
+      {lang}
     </p>
   {:else}
     <div class={className}>
-      <Language en={eng} gr={gre} />
+      {lang}
     </div>
   {/if}
   <hr

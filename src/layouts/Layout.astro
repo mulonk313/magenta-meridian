@@ -1,14 +1,27 @@
 ---
 import "../styles/global.css";
-import Header from "../components/Header.svelte";
+import Head from "../components/head.astro";
+
+import {
+  getLangFromUrl,
+  useTranslations,
+  useTranslatedPath,
+} from "../i18n/utils";
+import LanguagePicker from "../components/LanguagePicker.astro";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const translatePath = useTranslatedPath(lang);
+
+const { title } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en" class="h-full scroll-smooth m-0 p-0">
+<html lang={lang} class="h-full scroll-smooth m-0 p-0">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>My Portfolio</title>
+    <title>{title}</title>
 
     <meta
       name="description"
@@ -27,12 +40,16 @@ import Header from "../components/Header.svelte";
     <meta property="og:url" content="https://www.yoursite.com" />
   </head>
   <body class="font-sans m-0 min-h-full overflow-auto">
-    <Header client:load />
+    <Head />
     <slot />
-    <footer class="bg-[#333] text-center p-5 text-white mt-12 grid-cols-1">
+    <footer
+      class="bg-[#333] text-center p-5 text-white mt-12 flex flex-row justify-center items-center"
+    >
       <div class="bg-black/5 p-5 dark:text-white">
-        © 2024 Copyright:
-        <a href="/">My Portfolio</a>
+        © 2024 Copyright: <a href={translatePath("/")}>{title}</a>
+      </div>
+      <div>
+        <LanguagePicker class="flex-1 text-right" />
       </div>
     </footer>
   </body>
