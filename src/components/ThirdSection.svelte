@@ -1,15 +1,15 @@
 <script lang="ts">
   import Carousel from "svelte-carousel";
-  import proj1 from "/src/assets/proj1.png";
-  import proj2 from "/src/assets/proj2.png";
-  import proj3 from "/src/assets/proj3.png";
-  import proj11Sec from "/src/assets/proj1-sec.png";
-  import proj12Sec from "/src/assets/proj1-sec2.png";
-  import proj21Sec from "/src/assets/proj2-sec.png";
-  import proj22Sec from "/src/assets/proj2-sec2.png";
-  import proj23Sec from "/src/assets/proj2-sec3.png";
-  import proj31Sec from "/src/assets/proj3-sec.png";
-  import proj32Sec from "/src/assets/proj3-sec2.png";
+  import proj1 from "/src/assets/proj1.webp";
+  import proj2 from "/src/assets/proj2.webp";
+  import proj3 from "/src/assets/proj3.webp";
+  import proj11Sec from "/src/assets/proj1-sec.webp";
+  import proj12Sec from "/src/assets/proj1-sec2.webp";
+  import proj21Sec from "/src/assets/proj2-sec.webp";
+  import proj22Sec from "/src/assets/proj2-sec2.webp";
+  import proj23Sec from "/src/assets/proj2-sec3.webp";
+  import proj31Sec from "/src/assets/proj3-sec.webp";
+  import proj32Sec from "/src/assets/proj3-sec2.webp";
 
   let carousel;
   let currentIndex = 1;
@@ -47,9 +47,13 @@
     par32: "",
     par33: "",
   };
+
+  export let button = "";
 </script>
 
-<div class="carousel-wrapper m-auto h-auto w-auto lg:h-[1100px] lg:w-[1100px]">
+<div
+  class="carousel-wrapper m-auto h-auto w-auto min-[1441px]:h-[1100px] min-[1440px]:w-[1100px] min-[1024px]:h-[800px] min-[1024px]:w-[800px]"
+>
   <Carousel
     bind:this={carousel}
     bind:startIndex={currentIndex}
@@ -75,7 +79,7 @@
           loading="eager"
         />
         <span
-          class="absolute bottom-0 w-full h-1/2 text-center p-2 lg:p-[65px] opacity-0 group-hover:opacity-100 bg-black bg-opacity-70 text-white transition-opacity duration-300"
+          class="rounded-b-xl absolute bottom-0 w-full h-1/2 text-center p-2 lg:p-[65px] opacity-0 group-hover:opacity-100 bg-opacity-70 text-white transition-opacity duration-300 bg-gradient-to-r from-black"
         >
           {projectProps.projectName1}
         </span>
@@ -96,7 +100,7 @@
           loading="lazy"
         />
         <p
-          class="absolute bottom-0 w-full h-1/2 text-center p-[65px] opacity-0 group-hover:opacity-100 bg-black bg-opacity-70 text-white transition-opacity duration-300"
+          class="rounded-b-xl absolute bottom-0 w-full h-1/2 text-center p-2 lg:p-[65px] opacity-0 group-hover:opacity-100 bg-opacity-70 text-white transition-opacity duration-300 bg-gradient-to-r from-black"
         >
           {projectProps.projectName2}
         </p>
@@ -117,7 +121,7 @@
           loading="lazy"
         />
         <p
-          class="absolute bottom-0 w-full h-1/2 text-center p-[65px] opacity-0 group-hover:opacity-100 bg-black bg-opacity-70 text-white transition-opacity duration-300"
+          class="rounded-b-xl absolute bottom-0 w-full h-1/2 text-center p-2 lg:p-[65px] opacity-0 group-hover:opacity-100 bg-opacity-70 text-white transition-opacity duration-300 bg-gradient-to-r from-black"
         >
           {projectProps.projectName3}
         </p>
@@ -125,22 +129,20 @@
     </a>
   </Carousel>
 </div>
-<div
-  class="container -mt-[200px] max-[1024px]:mt-[100px] relative overflow-hidden mx-auto px-4"
->
+<div class="container md:mt-[200px] relative overflow-hidden mx-auto px-4">
   <div
     id="react"
     class={`grid md:grid-cols-2 gap-4 mb-12 transition-all duration-700 delay-350 ease-in-out transform ${
       isVisible1
-        ? "me-0 text-justify"
-        : "me-[475px] max-[1024px]:me-[0px] text-center"
+        ? "text-justify md:-translate-x-[0px] md:grid-cols-2"
+        : "text-center  md:-translate-x-[20%] md:grid-rows-none"
     }`}
   >
     <img
-      class={`h-5/6 justify-center mt-12 transition-all delay-200 duration-700 ease-in-out transform ${
+      class={`rounded-xl h-5/6 justify-center mt-12 transition-all delay-200 duration-700 ease-in-out transform ${
         isVisible1
-          ? "translate-x-0 opacity-100 scale-100"
-          : "-translate-x-full opacity-0 scale-95"
+          ? "translate-x-0 opacity-100 md:h-[50%] lg:h-[60%] xl:h-5/6"
+          : "-translate-x-full opacity-0 scale-95 "
       }`}
       src={proj11Sec.src}
       alt="Building"
@@ -154,18 +156,24 @@
         class="p-[8px] w-[100px] rounded bg-blue-500 text-xs sm:text-sm text-white"
         on:click={toggleVisibilityProj1}
       >
-        Press Me
+        {button}
       </button>
       <hr
         class={`mt-2 border-t-2 border-blue-500 transition-all duration-300 ease-in-out ${
           isVisible1 ? "w-[15%]" : "w-full"
         }`}
       />
-      <p class="mt-12 leading-8">
+      <p
+        class={`mt-12 leading-8 ${
+          isVisible1
+            ? "text-left md:text-justify"
+            : "text-center md:text-center"
+        }`}
+      >
         {projectProps.par11}
       </p>
       <p
-        class={`mt-12 transition-all duration-700 ease-in-out delay-200 transform leading-8 ${
+        class={`text-left md:text-justify mt-12 transition-all duration-700 ease-in-out delay-200 transform leading-8 ${
           isVisible1
             ? "-translate-x-0 opacity-100 scale-100"
             : "translate-x-full opacity-0 scale-95"
@@ -174,7 +182,7 @@
         {projectProps.par12}
       </p>
       <p
-        class={`mt-12 transition-all duration-700 ease-in-out delay-200 transform leading-8 ${
+        class={`text-left md:text-justify mt-12 transition-all duration-700 ease-in-out delay-200 transform leading-8 ${
           isVisible1
             ? "-translate-x-0 opacity-100 scale-100"
             : "translate-x-full opacity-0 scale-95"
@@ -183,9 +191,9 @@
         {projectProps.par13}
       </p>
       <img
-        class={`h-6/8 justify-center mt-12 transition-all delay-200 duration-700 ease-in-out transform ${
+        class={`rounded-xl h-6/8 justify-center mt-12 transition-all delay-200 duration-700 ease-in-out transform ${
           isVisible1
-            ? "-translate-x-0 opacity-100 scale-100"
+            ? "-translate-x-0 md:scale-[2] md:translate-x-[-50%] md:translate-y-[40%] xl:scale-100 xl:translate-x-[0] xl:translate-y-[0%] opacity-100 scale-100"
             : "translate-x-full opacity-0 scale-95"
         }`}
         src={proj12Sec.src}
@@ -196,10 +204,10 @@
   </div>
   <div
     id="vok"
-    class={`mt-60 grid grid-cols-2 gap-6 transition-all duration-700 delay-350 ease-in-out transform ${
+    class={`mt-60 grid gap-6 mb-12 transition-all duration-700 delay-350 ease-in-out transform ${
       isVisible2
-        ? "ms-0 text-justify"
-        : "ms-[475px] max-[1024px]:ms-[0px] text-center"
+        ? "text-justify md:translate-x-[0px] grid-cols-2"
+        : "text-center md:translate-x-[31%] grid-cols-none md:grid-cols-2"
     }`}
   >
     <div>
@@ -210,16 +218,16 @@
         class="p-[8px] w-[100px] rounded bg-blue-500 text-xs sm:text-sm text-white"
         on:click={toggleVisibilityProj2}
       >
-        Press Me
+        {button}
       </button>
       <hr
         class={`mt-2 border-t-2 border-blue-500 transition-all duration-300 ease-in-out ${isVisible2 ? "w-[15%]" : "w-full"}`}
       />
-      <p class="mt-12 -pl-12 leading-8">
+      <p class={`mt-12 -pl-12 ${isVisible2 ? "text-left" : "text-center"}`}>
         {projectProps.par21}
       </p>
       <p
-        class={`mt-12 transition-all duration-700 ease-in-out delay-200 transform leading-8 ${
+        class={`mt-12 transition-all duration-700 ease-in-out delay-200 transform text-left ${
           isVisible2
             ? "translate-x-0 opacity-100 scale-100"
             : "-translate-x-full opacity-0 scale-95"
@@ -228,10 +236,10 @@
         {projectProps.par22}
       </p>
       <div
-        class="flex flex-row gap-6 justify-normal md:justify-center h-screen mt-[105px] sm:mt-0"
+        class="flex flex-row gap-4 justify-normal md:justify-center h-screen mt-[105px] md:-mt-5"
       >
         <img
-          class={`h-44 md:h-60 md:w-1/2 w-72 justify-center mt-12 transition-all delay-200 duration-700 ease-in-out transform ${
+          class={`rounded h-44 sm:h-60 sm:w-1/2 w-72 justify-center mt-12 transition-all delay-200 duration-700 ease-in-out transform ${
             isVisible2
               ? "translate-x-0 opacity-100 scale-100"
               : "-translate-x-full opacity-0 scale-95"
@@ -241,7 +249,7 @@
           loading="lazy"
         />
         <img
-          class={`h-44 md:h-60 md:w-1/2 w-72 justify-center mt-12 transition-all delay-200 duration-700 ease-in-out transform ${
+          class={`rounded h-44 sm:h-60 sm:w-1/2 w-72 justify-center mt-12 transition-all delay-200 duration-700 ease-in-out transform ${
             isVisible2
               ? "-translate-y-0 opacity-100 scale-100"
               : "translate-y-20 opacity-0 scale-95"
@@ -254,7 +262,7 @@
     </div>
     <div>
       <img
-        class={`h-72 w-92 sm:h-80 md:w-80 scale-x-75 lg:scale-x-150 -translate-x-8 sm:-translate-x-0 justify-center mt-12 ms-10 lg:ms-[150px] transition-all delay-200 duration-700 ease-in-out transform ${
+        class={`rounded h-72 w-92 sm:h-80 md:w-80 scale-x-85 lg:scale-x-150 sm:-translate-x-0 justify-center mt-12 ms-5 sm:ms-0 lg:ms-[150px] transition-all delay-200 duration-700 ease-in-out transform ${
           isVisible2
             ? "translate-y-0 opacity-100 scale-100"
             : "-translate-y-20 opacity-0 scale-95"
@@ -264,7 +272,7 @@
         loading="lazy"
       />
       <p
-        class={`mt-12 transition-all duration-700 ease-in-out delay-200 transform leading-8 ${
+        class={`mt-12 transition-all duration-700 ease-in-out delay-200 transform text-left ${
           isVisible2
             ? "-translate-x-0 opacity-100 scale-100"
             : "translate-x-full opacity-0 scale-95"
@@ -273,7 +281,7 @@
         {projectProps.par23}
       </p>
       <p
-        class={`mt-12 transition-all duration-700 ease-in-out delay-200 transform leading-8 ${
+        class={`mt-12 transition-all duration-700 ease-in-out delay-200 transform text-left ${
           isVisible2
             ? "-translate-x-0 opacity-100 scale-100"
             : "translate-x-full opacity-0 scale-95"
@@ -283,9 +291,9 @@
       </p>
     </div>
   </div>
-  <div id="amazon" class="grid grid-cols-2 gap-4 -mt-96">
+  <div id="amazon" class="grid grid-cols-2 gap-4 -mt-96 mb-[200px]">
     <img
-      class="h-84 md:h-5/6 mt-[600px] md:mt-12 sm:mt-12 lg:mt-0 scale-y-[5] sm:scale-y-[0.5] lg:scale-y-[0.5] justify-center transition-transform duration-300 ease-in-out focus:translate-x-2/4 md:focus:scale-[1] lg:focus:scale-0 focus:scale-[2.5] hover:scale-150 md:hover:scale-100"
+      class="rounded-xl h-84 md:h-5/6 mt-[440px] lg:-mt-[130px] scale-y-[3] md:mt-0 md:scale-y-[0.5] lg:scale-y-[0.5] justify-center transition-transform duration-300 ease-in-out focus:translate-x-3/4 md:focus:scale-[1] lg:focus:scale-0 focus:scale-[2.5] hover:scale-150 md:hover:scale-100"
       src={proj31Sec.src}
       alt="Building"
       loading="lazy"
@@ -307,7 +315,7 @@
         {projectProps.par33}
       </p>
       <img
-        class="h-44 md:h-6/8 scale-[1.2] scale-x-[1.8] md:scale-x-[1.5] justify-center mt-4 transition-transform duration-300 ease-in-out -translate-x-2/4 lg:translate-x-2/4 lg:hover:scale-[2.5] sm:focus:-translate-x-2/4 focus:scale-150 hover:scale-150 hover:-translate-y-2/4"
+        class="mt-[170px] rounded-xl h-44 md:h-6/8 lg:scale-[2.5] scale-[2] justify-center transition-transform duration-300 ease-in-out -translate-x-2/4 lg:hover:scale-[2.5] sm:focus:-translate-x-2/4 focus:scale-150 hover:scale-150 hover:-translate-y-2/4"
         src={proj32Sec.src}
         alt="Building"
         loading="lazy"
