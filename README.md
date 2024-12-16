@@ -1,7 +1,7 @@
 
 # Portfolio Site
 
-Πρόκειτε για μία ιστοσελίδα, με τεχνολογίες όπως Astro, Svelte, Tailwind CSS αλλά και Typescript. 
+Πρόκειται για μία ιστοσελίδα, με τεχνολογίες όπως Astro, Svelte, Tailwind CSS αλλά και Typescript. 
 Ουσιαστικά έιναι ένα portfolio που αναφέρει πράγματα για εμένα και το μέλλον μου, αλλά και κάποια Projects.
 
 ## Προϋποθέσεις
